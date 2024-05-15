@@ -26,9 +26,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cookieParser())
 
-//middleware
+app.get("*", checkUser)
+app.get("jwtid", requireAuth, (res) => {
+    res.statusCode(200).send(res.locals.user_id)
+})
 
-//appel routes
+app.use("api/user", userRoutes)
+app.use("api/article", articleRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`La scène est en place au port ${process.env.PORT}`)
