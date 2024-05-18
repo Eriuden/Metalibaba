@@ -85,3 +85,19 @@ module.exports.resetPasswordLink = async (req,res) => {
     }
 }
 
+module.exports.forgotPasswordChecking = async (res,res) => {
+    const {id,token} = req.params
+
+    try {
+        const validUser = await userModel.findOne({_id:id, verifytoken:token})
+        const verifyToken = jwt.verify(token, process.env.TOKEN_SECRET)
+
+        if(validUser && verifyToken._id){
+            res.status(201).json({status:201, validUser})
+        } else {
+            res.status(401).json({status:401, message:"Utilisateur introuvable"})
+        }
+    } catch (error) {
+        res.status(401).json({status:401, error})
+    }
+}
