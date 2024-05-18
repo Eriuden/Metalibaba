@@ -1,6 +1,7 @@
 const userModel = require ("../Models/user.model")
 const jwt = require("jsonwebtoken")
 const {signInErrors, signUpErrors} = require("../utils/error.utils")
+const bcrypt = require("bcrypt")
 
 const maxAge = 3*24*60*60*3600
 
@@ -94,6 +95,29 @@ module.exports.forgotPasswordChecking = async (res,res) => {
 
         if(validUser && verifyToken._id){
             res.status(201).json({status:201, validUser})
+        } else {
+            res.status(401).json({status:401, message:"Utilisateur introuvable"})
+        }
+    } catch (error) {
+        res.status(401).json({status:401, error})
+    }
+}
+
+module.exports.updatePassword = async(req,res) => {
+    const {id,token} = req.params
+    const {password} = req.body.password 
+
+    try {
+        const validUser = await userModel.findOne({_id:id, verifytoken:token})
+        const verifyToken = jwt.verify(token, process.env.TOKEN_SECRET)
+        
+        if(validUser && verifyToken._id){
+            const newPassword = await bcrypt.hash(password,15)
+            const setNewPassword = await userModel.findByIdAndUpdate({_id:id},
+            {password:newPassword})
+
+            setNewPassword.save()
+            res.status(201).json({status:201, setNewPassword})
         } else {
             res.status(401).json({status:401, message:"Utilisateur introuvable"})
         }
