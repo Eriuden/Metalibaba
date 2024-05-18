@@ -40,3 +40,48 @@ module.exports.logout = (res) => {
     res.cookie("jwt", {maxAge : 1})
     res.redirect("/")
 }
+
+module.exports.resetPasswordLink = async (req,res) => {
+    const {email} = req.body.email
+
+    if (!email){
+        res.status(401).json({status: 401, message: "Veuillez entrer votre email"})
+    }
+
+    try {
+        const userfind = await userModel.findOne({email:email})
+
+        const token = jwt.sign({_id:userfind._id}, process.env.TOKEN_SECRET, {
+            expiresIn:"900s"
+        })
+
+        const setUserToken = await userModel.findByIdAndUpdate({_id:userfind._id},
+            {verifytoken:token}, {new:true})
+
+            if (setUserToken) {
+                const mailOptions = {
+                    from: process.env.EMAIL,
+                    to: email,
+                    subject: "Lien pour modifier votre mot de passe",
+                    text: `Ce lien n'est valide que durant 15 minutes
+                    ${process.env.CLIENT_URL}/forgotpassword/${userfind.id}/
+                    ${setUserToken.verifytoken}`
+                }
+
+                transport.sendMail(mailOptions, (error,info) => {
+                    if(error){
+                        console.log("error", error)
+                        res.status(401).json({status:401, 
+                        message: "Le mail n'a pas été envoyé"})
+                    } else {
+                        console.log("Email envoyé", info.response)
+                        res.status(201).json({status:201, 
+                        message: "Email envoyé avec succés"})
+                    }
+                })
+            }
+    } catch (error) {
+        res.status(401).json({status:401, message:"Utilisateur introuvable"})
+    }
+}
+
