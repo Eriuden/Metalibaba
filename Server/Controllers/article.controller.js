@@ -29,5 +29,61 @@ module.exports.createArticle = async (req, res) => {
             const errors = uploadErrors(error)
             return res.status(201).json({errors})
         }
+        fileName = req.body._id + Date.now() + ".jpg"
+
+        await pileline(
+            req.file.stream,
+            fs.createWriteStream(
+                `${__dirname}/../client/public/uploads/articleImages/${fileName}`
+            )
+        )
     }
+
+    const newArticle = new articleModel({
+        picture: req.file != null ? "./uploads/articleImages" + fileName :"",
+        name: req.body.name,
+        typeArticle: req.body.typeArticle,
+        groupe: req.body.groupe,
+        price: req.body.price,
+    })
+
+    try {
+        const article = newArticle.save()
+        return res.Status(201).json(article)
+    } catch (error) {
+        return res.status(400).send(error)
+    }
+}
+
+module.exports.updateArticle = (req, res) => {
+    if (!ObjectId.isValid(req.params.id))
+    return res.status(400).send("Id inconnue:" + req.params.id)
+
+    const updatedRecord = {
+        picture: req.body.picture,
+        name: req.body.name,
+        typeArticle: req.body.typeArticle,
+        groupe: req.body.groupe,
+        price: req.body.price,
+    }
+
+    articleModel.findByIdAndUpdate(
+        req.params.id,
+        { $set: updatedRecord}, 
+        {new: true},
+        (err,docs) => {
+            if (!err) res.send(docs)
+            else console.log("erreur d'update :" + err) 
+        }
+    )
+}
+
+module.exports.deleteArticle = (req,res) => {
+    if (!ObjectId.isValid(req.params.id))
+    return res.status(400).send("Id inconnue :" + req.params.id) 
+
+    articleModel.findByIdAndDelete(req.params.id, (err,docs) => {
+        if (!err)res.send(docs)
+        else console.log("Erreur lors de la supression :" + err)
+    })
 }
