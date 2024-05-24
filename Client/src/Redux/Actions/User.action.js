@@ -28,3 +28,30 @@ export const updateUser = (userId, name, adress, email) => {
         })
     }
 }
+
+export const updatePassword = (userId, password) => {
+    return (dispatch) => {
+        return axios({
+            method:"put",
+            url: `${process.env.REACT_APP_API_URL}api/user` + userId,
+            data: {password}
+        })
+        .then(()=> {
+            dispatch({type: UPDATE_PASSWORD, payload: password})
+        })
+        .catch((err)=> window.alert(err))
+    }
+}
+
+export const deleteUser = (userId, name, email, adress, password) => {
+    return (dispatch) => {
+        return axios({
+            method:"delete",
+            url: `${process.env.REACT_APP_API_URL}api/user/${userId}`,
+            data: {name, email, adress, password}
+        })
+        .then(()=> {
+            dispatch({type: DELETE_USER, payload: {userId}})
+        })
+    }
+}
