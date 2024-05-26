@@ -31,6 +31,54 @@ export const getArticle = () => {
 
 export const addArticle = (data) => {
     return (dispatch) => {
-        
+        return axios 
+            .post(`${process.env.REACT_APP_API_URL}api/article`, data)
+            .then((res)=> {
+                if (res.data.errors) {
+                    dispatch({type: GET_ARTICLE_ERROR, payload: res.data.errors})
+                } else {
+                    dispatch ({type: GET_ARTICLE_ERROR, payload:""})
+                }
+            })
     }
 }
+
+export const updateArticle = (
+    articleId,
+    picture,
+    name,
+    typeArticle,
+    groupe,
+    price
+) => {
+    return (dispatch) => {
+        return axios({
+            method:"put",
+            url:`${process.env.REACT_APP_API_URL}api/article/${articleId}`,
+            data: {picture, name, typeArticle, groupe, price},
+        })
+        .then(()=> {
+            dispatch({
+                type: UPDATE_ARTICLE,
+                payload: {articleId, picture, name, typeArticle, groupe, price}
+            })
+        })
+        .catch((err)=> window.alert(err))
+    }
+}
+
+export const deleteArticle = (
+    articleId, picture, name, typeArticle, groupe, price
+) => {
+    return (dispatch) => {
+        return axios ({
+            method:"delete",
+            url:`${process.env.REACT_APP_API_URL}api/article/${articleId}`,
+            data: {picture, name, typeArticle, groupe, price}
+        })
+        .then(()=> {
+            dispatch({type: DELETE_ARTICLE, payload: {articleId}})
+        })
+    }
+}
+
