@@ -14,4 +14,8 @@ router.patch("/dislike-article/:id", articleController.dislikeArticle)
 router.patch("/unlike-article/:id", articleController.unlikeArticle)
 router.patch("/undislike-article/:id", articleController.undislikeArticle)
 
+router.patch("/comment-article/:id", articleController.commentArticle)
+router.patch("/edit-comment-article/:id", articleController.editCommentArticle)
+router.patch("/delete-comment-article/:id", articleController.deleteCommentArticle)
+
 module.exports = router

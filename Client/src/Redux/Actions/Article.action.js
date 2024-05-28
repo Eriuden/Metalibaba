@@ -147,5 +147,47 @@ export const undislikeArticle = (articleId, userId) => {
     }
 }
 
+export const addCommentArticle = (articleId, commenterId, text, commenterName) => {
+    return (dispatch) => {
+        return axios({
+            method:"patch",
+            url: `${process.env.REACT_APP_API_URL}api/article/comment-article/${articleId}`,
+            data: {commenterId, text, commenterName}
+        })
+        .then((res)=> {
+            dispatch({ type: ADD_COMMENT, payload: {articleId}})
+        })
+        .catch((err)=> window.alert(err))
+    }
+}
+
+export const editCommentArticle = (articleId, commentId, text) => {
+    return (dispatch) => {
+        return axios({
+            method:"patch",
+            url: `${process.env.REACT_APP_API_URL}api/article/edit-comment-article/${articleId}`,
+            data: { commentId, text}
+        })
+        .then((res)=> {
+            dispatch({ type: EDIT_COMMENT, payload: {articleId, commentId, text}})
+        })
+        .catch((err)=> window.alert(err))
+    }
+}
+
+export const deleteCommentArticle = (articleId, commentId) => {
+    return (dispatch) => {
+        return axios({
+            method:"patch",
+            url: `${process.env.REACT_APP_API_URL}api/article/delete-comment-article/${articleId}`,
+            data:{commentId},
+        })
+        .then((res)=> {
+            dispatch({ type: DELETE_COMMENT, payload: {articleId, commentId}})
+        })
+        .catch((err)=> window.alert(err))
+    }
+}
+
 
 
