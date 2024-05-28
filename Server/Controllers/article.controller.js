@@ -204,3 +204,77 @@ module.exports.undislikeArticle = async (req,res) => {
         return res.status(400).send(error)
     }
 }
+
+module.exports.commentArticle = (req,res) => {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(400).send("Id inconnue :" + req.params.id)
+
+    try {
+        return articleModel.findByIdAndUpdate(
+            req.params.id,
+            {
+                $push: {
+                    comments: {
+                        commenterId: req.body.commenterId,
+                        commenterName: req.body.commenterName,
+                        text: req.body.text,
+                        timestamp: new Date().getTime(),
+                    },
+                },
+            },
+            { new:true },
+            (err,docs) => {
+                if (!err) return res.send(docs)
+                else return res.status(400).send(err)
+            }
+        )
+    } catch (error) {
+        return res.status(400).send(err)
+    }
+}
+
+module.exports.editCommentArticle = (req,res) => {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(400).send("Id inconnue :" + req.params.id)
+    try {
+        return articleModel.findById(req.params.id, (docs) => {
+            const theComment = docs.comment.find((comment)=> 
+            comment._id.equals(req.body.commentId)
+            )
+            if (!theComment) return res.status(404).send("Commentaire introuvable")
+            theComment.text = req.body.text 
+
+            return docs.save((err) => {
+                if (!err) return res.status(200).send(docs)
+                return res.status(500).send(err)
+            })
+        })
+    } catch (error) {
+        return res.status(400).send(error)
+    }
+}
+
+module.exports.deleteCommentArticle = (req,res) => {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(400).send("Id inconnue :" + req.params.id)
+    
+    try {
+        return articleModel.findByIdAndUpdate(
+            req.params.id,
+            {
+                $pull: {
+                    comments: {
+                        _id: req.body.commentId,
+                    },
+                },
+            },
+            {new:true},
+            (err,docs)=> {
+                if (!err) return res.send(docs)
+                else return res.status(400).send(err)
+            }
+        )
+    } catch (error) {
+            res.status(400).send(err)
+        }
+}

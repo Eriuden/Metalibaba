@@ -7,6 +7,15 @@ export const ADD_ARTICLE = "ADD_ARTICLE"
 export const UPDATE_ARTICLE = "UPDATE_ARTICLE"
 export const DELETE_ARTICLE = "DELETE_ARTICLE"
 
+export const LIKE_ARTICLE = "LIKE_ARTICLE"
+export const UNLIKE_ARTICLE = "UNLIKE_ARTICLE"
+export const DISLIKE_ARTICLE = "DISLIKE_ARTICLE"
+export const UNDISLIKE_ARTICLE = "UNDISLIKE_ARTICLE"
+
+export const ADD_COMMENT= "ADD_COMMENT"
+export const EDIT_COMMENT= "EDIT_COMMENT"
+export const DELETE_COMMENT= " DELETE_COMMENT"
+
 export const getAllArticles = () => {
     return (dispatch) => {
         return axios 
