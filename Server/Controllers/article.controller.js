@@ -3,6 +3,7 @@ const ObjectId = require("mongoose").Types.ObjectId
 const fs = require("fs")
 const {promisify} = require("util")
 const {uploadErrors} = require("../utils/error.utils")
+const userModel = require("../Models/user.model")
 const pipeline = promisify(require("stream"))
 
 module.exports.readArticle = (res) => {
@@ -31,7 +32,7 @@ module.exports.createArticle = async (req, res) => {
         }
         fileName = req.body._id + Date.now() + ".jpg"
 
-        await pileline(
+        await pipeline(
             req.file.stream,
             fs.createWriteStream(
                 `${__dirname}/../client/public/uploads/articleImages/${fileName}`
@@ -57,7 +58,7 @@ module.exports.createArticle = async (req, res) => {
 
 module.exports.updateArticle = (req, res) => {
     if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send("Id inconnue:" + req.params.id)
+        return res.status(400).send("Id inconnue:" + req.params.id)
 
     const updatedRecord = {
         picture: req.body.picture,
@@ -80,10 +81,66 @@ module.exports.updateArticle = (req, res) => {
 
 module.exports.deleteArticle = (req,res) => {
     if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send("Id inconnue :" + req.params.id) 
+        return res.status(400).send("Id inconnue :" + req.params.id) 
 
     articleModel.findByIdAndDelete(req.params.id, (err,docs) => {
         if (!err)res.send(docs)
         else console.log("Erreur lors de la supression :" + err)
     })
+}
+
+module.exports.likeArticle = async (req,res) => {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(400).send("Id inconnue :" + req.params.id)
+    try {
+        await articleModel.findByIdAndUpdate(
+            req.params.id,
+            { $addToSet: {likers: req.body.id}},
+            {new: true},
+            (err) => {
+                if (err) return res.status(400).send(err)
+            }
+        )
+        await userModel.findByIdAndUpdate(
+            req.body.id,
+            {
+                $addToSet: {likes: req.params.id},
+            },
+            {new:true},
+            (err,docs) => {
+                if (!err) res.send(docs)
+                return res.status(400).send(err)
+            }
+        )
+    } catch(err) {
+        return res.status(400).send(err)
+    }
+}
+
+module.exports.dislikeArticle = async (req,res) => {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(400).send("Id inconnue :" + req.params.id)
+    try {
+        await articleModel.findByIdAndUpdate(
+            req.params.id,
+            { $addToSet: {dislikers: req.body.id}},
+            {new: true},
+            (err) => {
+                if (err) return res.status(400).send(err)
+            }
+        )
+        await userModel.findByIdAndUpdate(
+            req.body.id,
+            {
+                $addToSet: {dislikes: req.params.id},
+            },
+            {new:true},
+            (err,docs) => {
+                if (!err) res.send(docs)
+                return res.status(400).send(err)
+            }
+        )
+    } catch(err) {
+        return res.status(400).send(err)
+    }
 }
