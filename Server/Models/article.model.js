@@ -34,6 +34,28 @@ const articleSchema = new mongoose.Schema(
             max: 10,
             required: true,
         },
+
+        comments: {
+            type: [
+                {
+                    commenterId: String,
+                    commenterName: String,
+                    text: String,
+                    timeStamp: Number,
+                }
+            ],
+            required: true,
+        },
+
+        likers: {
+            type: [String],
+            required: true,
+        },
+
+        dislikers: {
+            type: [String],
+            required: true,
+        }
     },
     {timestamps : true}
 )
