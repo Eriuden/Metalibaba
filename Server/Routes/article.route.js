@@ -9,5 +9,9 @@ router.get("/", upload.single("file", articleController.createArticle))
 router.get("/:id", articleController.updateArticle)
 router.get("/:id", articleController.deleteArticle)
 router.post("/upload-articlePic", uploadController.uploadArticlePic)
+router.patch("/like-article/:id", articleController.likeArticle)
+router.patch("/dislike-article/:id", articleController.dislikeArticle)
+router.patch("/unlike-article/:id", articleController.unlikeArticle)
+router.patch("/undislike-article/:id", articleController.undislikeArticle)
 
 module.exports = router

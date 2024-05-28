@@ -144,3 +144,63 @@ module.exports.dislikeArticle = async (req,res) => {
         return res.status(400).send(err)
     }
 }
+
+module.exports.unlikeArticle = async (req,res) => {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(400).send("Id inconnue :" + req.params.id)
+    try {
+        await articleModel.findByIdAndUpdate(
+            req.params.id,
+            {
+                $pull: { likers: req.body.id},
+            },
+            {new:true},
+            (err) => {
+                if (err) return res.status(400).send(err)
+            }
+        )
+        await userModel.findByIdAndUpdate(
+            req.body.id,
+            {
+                $pull: {likes: req.params.id},
+            },
+            {news: true},
+            (err,docs) => {
+                if (!err) res.send(docs)
+                return res.status(400).send(err)
+            }
+        )
+    } catch (error) {
+        return res.status(400).send(error)
+    }
+}
+
+module.exports.undislikeArticle = async (req,res) => {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(400).send("Id inconnue :" + req.params.id)
+    try {
+        await articleModel.findByIdAndUpdate(
+            req.params.id,
+            {
+                $pull: { dislikers: req.body.id},
+            },
+            {new:true},
+            (err) => {
+                if (err) return res.status(400).send(err)
+            }
+        )
+        await userModel.findByIdAndUpdate(
+            req.body.id,
+            {
+                $pull: {dislikes: req.params.id},
+            },
+            {news: true},
+            (err,docs) => {
+                if (!err) res.send(docs)
+                return res.status(400).send(err)
+            }
+        )
+    } catch (error) {
+        return res.status(400).send(error)
+    }
+}
