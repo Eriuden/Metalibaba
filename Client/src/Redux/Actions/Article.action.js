@@ -91,3 +91,61 @@ export const deleteArticle = (
     }
 }
 
+export const likeArticle = (articleId, userId) => {
+    return (dispatch) => {
+        return axios({
+            method: "patch",
+            url: `${process.env.REACT_APP_API_URL}api/article/like-article`+ articleId,
+            data: {id:userId}
+        })
+        .then((res)=> {
+            dispatch({type: LIKE_ARTICLE, payload: {articleId, userId}})
+        })
+        .catch((err)=> window.alert(err))
+    }
+}
+
+export const unlikeArticle = (articleId, userId) => {
+    return (dispatch) => {
+        return axios({
+            method: "patch",
+            url: `${process.env.REACT_APP_API_URL}api/article/unlike-article`+ articleId,
+            data: {id:userId}
+        })
+        .then((res)=> {
+            dispatch({type: UNLIKE_ARTICLE, payload: {articleId, userId}})
+        })
+        .catch((err)=> window.alert(err))
+    }
+}
+
+export const dislikeArticle = (articleId, userId) => {
+    return (dispatch) => {
+        return axios({
+            method: "patch",
+            url: `${process.env.REACT_APP_API_URL}api/article/dislike-article`+ articleId,
+            data: {id:userId}
+        })
+        .then((res)=> {
+            dispatch({type: DISLIKE_ARTICLE, payload: {articleId, userId}})
+        })
+        .catch((err)=> window.alert(err))
+    }
+}
+
+export const undislikeArticle = (articleId, userId) => {
+    return (dispatch) => {
+        return axios({
+            method: "patch",
+            url: `${process.env.REACT_APP_API_URL}api/article/undislike-article`+ articleId,
+            data: {id:userId}
+        })
+        .then((res)=> {
+            dispatch({type: UNDISLIKE_ARTICLE, payload: {articleId, userId}})
+        })
+        .catch((err)=> window.alert(err))
+    }
+}
+
+
+
