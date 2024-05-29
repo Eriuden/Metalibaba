@@ -1,6 +1,6 @@
 import {GET_ARTICLE, UPDATE_ARTICLE, UPLOAD_ARTICLE_PICTURE, DELETE_ARTICLE,
  LIKE_ARTICLE, UNLIKE_ARTICLE, DISLIKE_ARTICLE, UNDISLIKE_ARTICLE,
- ADD_COMMENT, EDIT_COMMENT, DELETE_COMMENT} 
+EDIT_COMMENT, DELETE_COMMENT} 
 from "../Actions/Article.action";
 
 const initialState = {}
@@ -21,5 +21,42 @@ export const articleReducer = (state = initialState, action ) => {
                     }
                 } else return article
             })
+        case UPLOAD_ARTICLE_PICTURE:
+            return state.map((article)=> {
+                if (article.id === action.payload.articleId) {
+                    return {
+                        picture: action.payload.picture
+                    } 
+                } else return article
+            })
+        case DELETE_ARTICLE:
+            return state.filter((article) => article.id !== action.payload.articleId)
+        case EDIT_COMMENT:
+            return state.map((article) => {
+                if(article._id === action.payload.articleId) {
+                    return {
+                        ...article,
+                        comments: article.comments.map((comment) => {
+                            if (comment._id === action.payload.commentId) {
+                                return {
+                                    ...comment,
+                                    text: action.payload.text 
+                                }
+                            } else {
+                                return comment
+                            }
+                        })
+                    }
+                } else return article
+            })
+        case DELETE_COMMENT:
+            return state.map((article) => {
+                if (article._id === action.payload.articleId) {
+                    return {
+                        ...article,
+                        comments: article.comments.filter((comment) => comment._id !== action.payload.commentId)
+                    }
+                } else return article
+            })           
     }
 }
