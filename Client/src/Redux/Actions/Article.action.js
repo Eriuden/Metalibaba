@@ -5,6 +5,7 @@ export const GET_ALL_ARTICLES = "GET_ALL_ARTICLES"
 export const GET_ARTICLE_ERROR = "GET_ARTICLE_ERROR"
 export const ADD_ARTICLE = "ADD_ARTICLE"
 export const UPDATE_ARTICLE = "UPDATE_ARTICLE"
+export const UPLOAD_ARTICLE_PICTURE = "UPLOAD_ARTICLE_PICTURE"
 export const DELETE_ARTICLE = "DELETE_ARTICLE"
 
 export const LIKE_ARTICLE = "LIKE_ARTICLE"
@@ -54,7 +55,6 @@ export const addArticle = (data) => {
 
 export const updateArticle = (
     articleId,
-    picture,
     name,
     typeArticle,
     groupe,
@@ -64,15 +64,35 @@ export const updateArticle = (
         return axios({
             method:"put",
             url:`${process.env.REACT_APP_API_URL}api/article/${articleId}`,
-            data: {picture, name, typeArticle, groupe, price},
+            data: { name, typeArticle, groupe, price},
         })
         .then(()=> {
             dispatch({
                 type: UPDATE_ARTICLE,
-                payload: {articleId, picture, name, typeArticle, groupe, price}
+                payload: {articleId, name, typeArticle, groupe, price}
             })
         })
         .catch((err)=> window.alert(err))
+    }
+}
+
+export const uploadPicture = (data, articleId) => {
+    return (dispatch) => {
+        return axios 
+            .post(`${process.env.REACT_APP_API_URL}api/article/upload-articlePic`, data)
+            .then((res)=> {
+                if (res.data.errors) {
+                    dispatch({type: GET_ARTICLE_ERROR, payload: res.data.errors})
+                } else {
+                    dispatch ({ type: GET_ARTICLE_ERROR, payload: ""})
+                    return axios
+                    .get(`${process.env.REACT_APP_API_URL}api/article/${articleId}`)
+                    .then((res)=> {
+                        dispatch({ type: UPLOAD_ARTICLE_PICTURE, payload: res.data.picture})
+                    })
+                }
+            })
+            .catch((err) => console.log(err))
     }
 }
 
