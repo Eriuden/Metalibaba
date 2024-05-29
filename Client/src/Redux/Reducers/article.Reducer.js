@@ -30,7 +30,8 @@ export const articleReducer = (state = initialState, action ) => {
                 } else return article
             })
         case DELETE_ARTICLE:
-            return state.filter((article) => article.id !== action.payload.articleId)
+            return state.filter((article) => 
+            article.id !== action.payload.articleId)
         case EDIT_COMMENT:
             return state.map((article) => {
                 if(article._id === action.payload.articleId) {
@@ -54,9 +55,46 @@ export const articleReducer = (state = initialState, action ) => {
                 if (article._id === action.payload.articleId) {
                     return {
                         ...article,
-                        comments: article.comments.filter((comment) => comment._id !== action.payload.commentId)
+                        comments: article.comments.filter((comment) =>
+                        comment._id !== action.payload.commentId)
                     }
                 } else return article
-            })           
+            })
+        case LIKE_ARTICLE:
+            return state.map((article) => {
+                if (article._id === action.payload.articleId)
+                    return {
+                        ...article,
+                        likers: [action.payload.userId, ...article.likers]
+                    }
+            })
+        case DISLIKE_ARTICLE:
+            return state.map((article) => {
+                if (article._id === action.payload.articleId)
+                    return {
+                        ...article,
+                        likers: [action.payload.userId, ...article.dislikers]
+                    }
+            })
+        case UNLIKE_ARTICLE:
+            return state.map((article) => {
+                if (article._id === action.payload.articleId)
+                    return {
+                        ...article,
+                        likers: article.likers.filter((id) =>
+                        id !== action.payload.userId)
+                    }
+                return article
+            })
+        case UNDISLIKE_ARTICLE:
+            return state.map((article) => {
+                if (article._id === action.payload.articleId)
+                    return {
+                        ...article,
+                        dislikers: article.dislikers.filter((id) => 
+                        id !== action.payload.userId)
+                    }
+                return article
+            })             
     }
 }
