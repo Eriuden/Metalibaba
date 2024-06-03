@@ -54,8 +54,8 @@ export const Header = () => {
             </>
           ) : (
             <>
-              <Link to={"/connexion"}>Connexion</Link>
-              <Link to={"/inscription"}>Inscription</Link>
+              <Link to={"/login"}>Connexion</Link>
+              <Link to={"/register"}>Inscription</Link>
             </>
           )}
         </nav>
