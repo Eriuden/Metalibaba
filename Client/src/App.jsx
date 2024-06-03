@@ -7,12 +7,12 @@ import { Home } from './Pages/Home'
 import { Connexion } from './Pages/Connexion'
 import { Inscription } from './Pages/Inscription'
 import { Searcher } from './Components/Searcher'
-//getUser
-import './App.css'
+import { getUser } from './Redux/Actions/User.action'
 import { UserProfile } from './Pages/UserProfile'
 import { ResetPasswordLink } from './Pages/ResetPasswordLink'
 import { UpdatePassword } from './Pages/UpdatePassword'
 import { ArticlePage } from './Pages/ArticlePage'
+import './App.css'
 
 function App() {
   const [uid, setUid] = useState(null)
