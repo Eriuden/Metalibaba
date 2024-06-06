@@ -21,7 +21,7 @@ export const ArticlePage = () => {
       <h3>{article.price}</h3>
 
       <div>
-        <Comments props={article}/>
+        <Comments commentProps={article}/>
       </div>
     </div>
   )
