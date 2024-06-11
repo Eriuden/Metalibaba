@@ -43,7 +43,24 @@ export const ResetPasswordLink = () => {
     }
   }
   return (
-    <div>ResetPasswordLink</div>
+    <div>
+      <div>
+        <h2>Entre votre adresse mail</h2>
+      </div>
+
+      {message ? <p>Mot de passe envoyé avec succés</p> :""}
+
+      <form>
+        <div>
+          <label htmlFor='email'>Adresse email</label>
+          <input type="email" value={email} onChange={mailValue} name="email"
+          id='email' placeholder='Entre votre adresse mail'/>
+        </div>
+
+        <button onClick={sendLink}>Envoyer</button>
+      </form>
+      <ToastContainer/>
+    </div>
   )
 }
 
