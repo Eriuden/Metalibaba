@@ -8,10 +8,6 @@ import { Connexion } from './Connexion'
 import { Inscription } from './Inscription'
 import ReactModal from 'react-modal'
 
-
-//useState booléen pour ouverture ou non des modals d'inscription et connexion
-//react modals <>Composants en question</>
-
 export const Header = () => {
   const [hamburger, setHamburger] = useState(false)
   const [connexionModal, setConnexionModal] = useState(false)
