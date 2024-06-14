@@ -4,9 +4,18 @@ import { Link } from 'react-router-dom'
 import { UidContext } from './AppContext'
 import {Squash as Hamburger} from "hamburger-react"
 import { Logout } from './Logout'
+import { Connexion } from './Connexion'
+import { Inscription } from './Inscription'
+import ReactModal from 'react-modal'
+
+
+//useState booléen pour ouverture ou non des modals d'inscription et connexion
+//react modals <>Composants en question</>
 
 export const Header = () => {
   const [hamburger, setHamburger] = useState(false)
+  const [connexionModal, setConnexionModal] = useState(false)
+  const [inscriptionModal, setInscriptionModal] = useState(false)
   const uid = useContext(UidContext)
   const userData = useSelector((state)=> state.userReducer)
 
@@ -29,9 +38,26 @@ export const Header = () => {
           </>
         ) :(
           <>
-            <Link to={"/connexion"}>Connexion</Link>
-            <Link to={"/inscription"}>Inscription</Link>
+            <span onClick={setConnexionModal(!connexionModal)
+            && setInscriptionModal(false)}>
+              Connexion
+            </span>
+
+            <span onClick={setInscriptionModal(!inscriptionModal) 
+            && setConnexionModal(false)}>
+              Inscription
+            </span>
+
+            {connexionModal ? (
+              <ReactModal isOpen={true}><Connexion/></ReactModal>
+            ) : ""}
+
+            {inscriptionModal ? (
+              <ReactModal isOpen={true}><Inscription/></ReactModal>
+            ) : ""}
           </>
+
+          
         )}
       </nav>
 
