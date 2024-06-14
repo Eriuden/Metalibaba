@@ -22,6 +22,39 @@ export const Inscription = () => {
     const termsError = document.querySelector(".terms.error")
     passwordConfError.innerHTML=""
     termsError.innerHTML=""
+
+    if(password !== passwordConfError || password.length < 8 || !terms.checked) {
+      if (password !== passwordControl) {
+        passwordConfError.innerHTML ="Les mots de passe ne correspondent pas"
+      }
+      if(password.length < 8) {
+        passwordConfError.innerHTML ="Mot de passe trop court, minimum 8 caractères"
+      }
+      if(!terms.checked){
+        termsError.innerHTML="Veuillez accepter les conditions générales"
+      }
+    } else {
+      await axios({
+        method:"post",
+        url: `${process.env.REACT_APP_API_URL}api/user/register`,
+        data: {
+          name,
+          email,
+          address
+        }
+      })
+      .then((res)=> {
+        if (res.data.errors){
+          nameError.innerHTML = res.data.errors.name 
+          emailError.innerHTML = res.data.errors.email
+          addressError.innerHTML = res.data.errors.address  
+          passwordError.innerHTML = res.data.errors.password 
+        } else {
+          setFormSubmit(true)
+        }
+      })
+      .catch((err)=> console.log(err))
+    }
   }
 
   return (
