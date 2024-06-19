@@ -1,8 +1,8 @@
 
 import axios from 'axios'
 import React, {useState} from 'react'
-import { useNavigate, useParams, Link } from 'react-router-dom'
-import { ToastContainer, Toast  } from 'react-toastify'
+import { useNavigate, useParams, Link, json } from 'react-router-dom'
+import { ToastContainer, toast  } from 'react-toastify'
 
 export const UpdatePassword = () => {
 
@@ -38,7 +38,39 @@ export const UpdatePassword = () => {
 
   const sendPassword = async(e) => {
     e.preventDefault()
+
+    if (password === "") {
+      toast.error("Mot de passe exigé", {
+        position:"top-center"
+      })
+    } else if (password.length < 8) {
+      toast.error("Mot de passe trop court, 8 caractères minimum", {
+        position:"top-center"
+      })
+    } else {
+      const res = await axios({
+        method:"post",
+        url: `/${id}/${token}`,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({password})
+      })
+
+      const data = await res.json()
+
+      if (data.status === 201) {
+        setPassword("")
+        setMessage(true)
+      } else {
+        toast.error(" Token expiré !", {
+          position:"top-center"
+        })
+      }
+    }
   }
+
+  
   return (
     <div>UpdatePassword</div>
   )
