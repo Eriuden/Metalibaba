@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useNavigate, useParams, Link, json } from 'react-router-dom'
 import { ToastContainer, toast  } from 'react-toastify'
 
@@ -70,8 +70,38 @@ export const UpdatePassword = () => {
     }
   }
 
-  
+  useEffect(()=> {
+    userValid()
+    setTimeout(()=> {
+      setData(true)
+    }, 3000)
+  }, [])
+
+
   return (
-    <div>UpdatePassword</div>
+    <div>
+      {data ? (
+        <div>
+          <div>
+            <h2>
+              Entrez votre nouveau mot de passe
+            </h2>
+          </div>
+
+          <form>
+            {message ? <p>Mot de passe mis à jour avec succés</p> :""}
+
+            <label htmlFor='password'>Nouveau mot de passe</label>
+            <input type="password" value={password} onChange={setValue}
+            name="password" id='password' placeholder='Entrez votre nouveau
+            mot de passe'/>
+            <button onClick={sendPassword}>Envoyer</button>
+          </form>
+
+          <p> <Link to={"/"}>Accueil</Link></p>
+          <ToastContainer/>
+        </div>
+      ) :""}
+    </div>
   )
 }
