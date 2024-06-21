@@ -19,3 +19,22 @@ export const addToCart = (cart, newProduct, quantityAdded) => {
         })
     }
 }
+
+export const deleteFromCart = (cart, product) => {
+    return (dispatch) => {
+        let newCart = cart.filter((filteredCart) => filteredCart.id !== product.id)
+        dispatch({
+            type: MODIFY_CART,
+            payload: newCart,
+        })
+    }
+}
+
+export const cleanCart = () => {
+    return (dispatch) => {
+        dispatch({
+            type: CLEAN_CART,
+            payload: null
+        })
+    }
+}
