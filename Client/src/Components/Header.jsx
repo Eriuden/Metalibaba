@@ -74,9 +74,9 @@ export const Header = () => {
               </Link>
 
               <Logout/>
-              
+
               <div>
-                <span>{cartData.localCart.length}</span>
+                <span>{cartData.cart.length}</span>
                 <Link to={"/cart"}/>
               </div>
               
