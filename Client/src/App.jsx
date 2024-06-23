@@ -12,7 +12,9 @@ import { UserProfile } from './Pages/UserProfile'
 import { ResetPasswordLink } from './Pages/ResetPasswordLink'
 import { UpdatePassword } from './Pages/UpdatePassword'
 import { ArticlePage } from './Pages/ArticlePage'
+import { Cart } from './Pages/Cart'
 import './App.css'
+
 
 function App() {
   const [uid, setUid] = useState(null)
@@ -48,6 +50,7 @@ function App() {
           <Route exact path={"/reset-password"} element={<ResetPasswordLink/>}/>
           <Route exact path={"/update-password"} element={<UpdatePassword/>}/>
           <Route exact path={"/article-page/:id"} element={<ArticlePage/>}/>
+          <Route exact path={"/cart"} element={<Cart/>}/>
         </Routes>
       </div>
     </>

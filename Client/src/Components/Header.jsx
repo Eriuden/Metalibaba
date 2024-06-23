@@ -14,6 +14,7 @@ export const Header = () => {
   const [inscriptionModal, setInscriptionModal] = useState(false)
   const uid = useContext(UidContext)
   const userData = useSelector((state)=> state.userReducer)
+  const cartData = useSelector((state)=> state.cartReducer)
 
   return (
     <div>
@@ -73,6 +74,12 @@ export const Header = () => {
               </Link>
 
               <Logout/>
+              
+              <div>
+                <span>{cartData.localCart.length}</span>
+                <Link to={"/cart"}/>
+              </div>
+              
             </>
           ) : (
             <>
