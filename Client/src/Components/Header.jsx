@@ -22,7 +22,7 @@ export const Header = () => {
         Metalibaba 
       </h1>
 
-      <nav className='hidden flex-row justify-around mt-0 sm:flex'>
+      <nav className='hidden sticky flex-row justify-around mt-0 sm:flex'>
         <Link to={"/"}>Acceuil</Link>
 
         {uid ? (
@@ -58,7 +58,7 @@ export const Header = () => {
         )}
       </nav>
 
-      <h2 className='flex m-3 sm:hidden' onClick={()=> setHamburger(!hamburger)}>
+      <h2 className='flex m-3 sm:hidden sticky' onClick={()=> setHamburger(!hamburger)}>
         <Hamburger/>
       </h2>
 
