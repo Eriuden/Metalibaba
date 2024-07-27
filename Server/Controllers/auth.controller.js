@@ -11,7 +11,7 @@ const createToken = (id) => {
     }
 }
 
-modules.exports.signUp = async(req, res) => {
+module.exports.signUp = async(req, res) => {
     const {name, email, password} = req.body
 
     try {
@@ -86,7 +86,7 @@ module.exports.resetPasswordLink = async (req,res) => {
     }
 }
 
-module.exports.forgotPasswordChecking = async (res,res) => {
+module.exports.forgotPasswordChecking = async (req,res) => {
     const {id,token} = req.params
 
     try {

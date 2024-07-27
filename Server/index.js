@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 require("dotenv").config({path: "./config/.env"})
 require("./Config/db")
+const {checkUser, requireAuth} = require("./Middleware/auth.middleware")
 const cors = require("cors")
 
 const articleRoutes = require("./Routes/article.route")
