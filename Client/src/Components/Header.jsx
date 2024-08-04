@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { UidContext } from './AppContext'
@@ -13,10 +13,19 @@ export const Header = () => {
   const [connexionModal, setConnexionModal] = useState(false)
   const [inscriptionModal, setInscriptionModal] = useState(false)
   const uid = useContext(UidContext)
-  
+
   //A corriger, too many re-renders
   const userData = useSelector((state)=> state.userReducer)
   const cartData = useSelector((state)=> state.cartReducer)
+  const h5Name = document.querySelector(".h5Name")
+  const spanCart = document.querySelector(".spanCart")
+
+  useEffect(()=> {
+    if (uid) {
+      h5Name.textContent(`Bienvenue ${userData.name}`)
+      spanCart.textContent(`${cartData.cart.length}`)
+    }
+  })
 
   return (
     <div>
@@ -30,10 +39,15 @@ export const Header = () => {
         {uid ? (
           <>
             <Link to={"/user-profile/:id"}>
-              <h5>Bienvenue {userData.name}</h5>
+              <h5 className='h5Name'></h5>
             </Link>
 
             <Logout/>
+
+            <div>
+                <span className='spanCart'></span>
+                <Link to={"/cart"}/>
+            </div>
           </>
         ) :(
           <>
@@ -72,13 +86,13 @@ export const Header = () => {
           {uid ? (
             <>
               <Link to={"/user-profile/:id"}>
-                <h5>Bienvenue {userData.name}</h5>
+                <h5 className='h5Name'></h5>
               </Link>
 
               <Logout/>
 
               <div>
-                <span>{cartData.cart.length}</span>
+                <span className='spanCart'></span>
                 <Link to={"/cart"}/>
               </div>
               
