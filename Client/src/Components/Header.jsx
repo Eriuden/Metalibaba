@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import { UidContext } from './AppContext'
 import {Squash as Hamburger} from "hamburger-react"
 import { Logout } from './Logout'
-import { Connexion } from './Connexion'
-import { Inscription } from './Inscription'
+import { Connexion } from '../Pages/Connexion'
+import { Inscription } from '../Pages/Inscription'
 import ReactModal from 'react-modal'
 
 export const Header = () => {

@@ -4,7 +4,7 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
-import { reducers } from './Redux/Reducers/IndexReducer.js'
+import { reducers } from './Redux/Reducers/indexReducer.js'
 import './index.css'
 
 const store = configureStore({reducer:reducers})

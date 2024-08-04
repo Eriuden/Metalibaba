@@ -95,6 +95,8 @@ export const articleReducer = (state = initialState, action ) => {
                         id !== action.payload.userId)
                     }
                 return article
-            })             
+            })   
+        default:
+            return state          
     }
 }

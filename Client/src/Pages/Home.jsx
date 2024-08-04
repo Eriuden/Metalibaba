@@ -33,9 +33,9 @@ export const Home = () => {
     <div>
       <div>
         <ul>
-          {isEmpty((articles[0])) &&
-          articles.map((article)=> {
-            return <ArticleCard articleProps={article} key={article._id}/>
+          {articles[0] &&
+            articles.map((article) => {
+              return <ArticleCard articleProps={article} key={article._id}/>
           })}
         </ul>
       </div>

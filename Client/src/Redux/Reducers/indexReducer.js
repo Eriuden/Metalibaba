@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { allArticleReducer } from "./AllArticleReducer";
-import { allUsersReducer } from "./AllUsersReducer";
-import { articleReducer } from "./Article.Reducer";
-import { userReducer } from "./User.reducer";
+import { allArticleReducer } from "./allArticleReducer";
+import { allUsersReducer } from "./allUsersReducer";
+import { articleReducer } from "./article.Reducer";
+import { userReducer } from "./user.reducer";
 import { errorReducer } from "./error.reducer";
 
 export const reducers = combineReducers({
