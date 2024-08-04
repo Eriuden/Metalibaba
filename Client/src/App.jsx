@@ -4,8 +4,8 @@ import {Header} from "./Components/Header"
 import { Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Home } from './Pages/Home'
-import { Connexion } from './Pages/Connexion'
-import { Inscription } from './Pages/Inscription'
+import { Connexion } from './Components/Connexion'
+import { Inscription } from './Components/Inscription'
 import { Searcher } from './Components/Searcher'
 import { getUser } from './Redux/Actions/User.action'
 import { UserProfile } from './Pages/UserProfile'
@@ -33,7 +33,7 @@ function App() {
       })
       .catch(() => console.log("Pas de tokens"))
     }
-    fetchToken
+    fetchToken()
     if (uid) dispatch(getUser(uid))
   }, [uid])
 

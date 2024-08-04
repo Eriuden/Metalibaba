@@ -4,26 +4,26 @@ import { Link } from 'react-router-dom'
 import { UidContext } from './AppContext'
 import {Squash as Hamburger} from "hamburger-react"
 import { Logout } from './Logout'
-import { Connexion } from '../Pages/Connexion'
-import { Inscription } from '../Pages/Inscription'
+import { Connexion } from './Connexion'
+import { Inscription } from './Inscription'
 import ReactModal from 'react-modal'
 
 export const Header = () => {
   const [hamburger, setHamburger] = useState(false)
   const [connexionModal, setConnexionModal] = useState(false)
   const [inscriptionModal, setInscriptionModal] = useState(false)
+  const [uidMessage, setUidMessage] = useState("")
+  const [cartNumber, setCartNumber] = useState(0)
   const uid = useContext(UidContext)
 
   //A corriger, too many re-renders
   const userData = useSelector((state)=> state.userReducer)
   const cartData = useSelector((state)=> state.cartReducer)
-  const h5Name = document.querySelector(".h5Name")
-  const spanCart = document.querySelector(".spanCart")
 
   useEffect(()=> {
     if (uid) {
-      h5Name.textContent(`Bienvenue ${userData.name}`)
-      spanCart.textContent(`${cartData.cart.length}`)
+      setUidMessage(`Bienvenue ${userData.name}`)
+      setCartNumber(`${cartData.cart.length}`)
     }
   })
 
@@ -39,13 +39,13 @@ export const Header = () => {
         {uid ? (
           <>
             <Link to={"/user-profile/:id"}>
-              <h5 className='h5Name'></h5>
+              <h5>{uidMessage}</h5>
             </Link>
 
             <Logout/>
 
             <div>
-                <span className='spanCart'></span>
+                <span className='spanCart'>{cartNumber}</span>
                 <Link to={"/cart"}/>
             </div>
           </>
