@@ -13,6 +13,8 @@ export const Header = () => {
   const [connexionModal, setConnexionModal] = useState(false)
   const [inscriptionModal, setInscriptionModal] = useState(false)
   const uid = useContext(UidContext)
+  
+  //A corriger, too many re-renders
   const userData = useSelector((state)=> state.userReducer)
   const cartData = useSelector((state)=> state.cartReducer)
 
