@@ -20,12 +20,22 @@ export const Header = () => {
   const userData = useSelector((state)=> state.userReducer)
   const cartData = useSelector((state)=> state.cartReducer)
 
+  const switchConnexion = () => {
+    setConnexionModal(!inscriptionModal) 
+    && setInscriptionModal(false)
+  }
+
+  const switchInscription = () => {
+    setInscriptionModal(!inscriptionModal) 
+    && setConnexionModal(false)
+  }
+
   useEffect(()=> {
     if (uid) {
       setUidMessage(`Bienvenue ${userData.name}`)
       setCartNumber(`${cartData.cart.length}`)
     }
-  })
+  },[uid, userData, cartData])
 
   return (
     <div>
@@ -51,13 +61,11 @@ export const Header = () => {
           </>
         ) :(
           <>
-            <span onClick={setConnexionModal(!connexionModal)
-            && setInscriptionModal(false)}>
+            <span onClick={switchConnexion}>
               Connexion
             </span>
 
-            <span onClick={setInscriptionModal(!inscriptionModal) 
-            && setConnexionModal(false)}>
+            <span onClick={switchInscription}>
               Inscription
             </span>
 
@@ -86,13 +94,13 @@ export const Header = () => {
           {uid ? (
             <>
               <Link to={"/user-profile/:id"}>
-                <h5 className='h5Name'></h5>
+                <h5>{uidMessage}</h5>
               </Link>
 
               <Logout/>
 
               <div>
-                <span className='spanCart'></span>
+                <span>{cartNumber}</span>
                 <Link to={"/cart"}/>
               </div>
               
