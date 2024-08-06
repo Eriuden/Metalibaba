@@ -82,7 +82,7 @@ export const Header = () => {
               <ReactModal ariaHideApp={false} className= "max-w-[100%] p-2"
               shouldCloseOnOverlayClick={true}
               shouldCloseOnEsc={true} isOpen={inscriptionModal ? true : false}>
-                <span className='bg-slate-50 p-4 rounded-md cursor-pointer' onClick={switchConnexion}>
+                <span className='bg-slate-50 p-4 rounded-md cursor-pointer' onClick={switchInscription}>
                 X</span>
                 <Inscription/>
               </ReactModal>
