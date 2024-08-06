@@ -16,19 +16,17 @@ export const Header = () => {
   const [cartNumber, setCartNumber] = useState(0)
   const uid = useContext(UidContext)
 
-  //A corriger, too many re-renders
   const userData = useSelector((state)=> state.userReducer)
   const cartData = useSelector((state)=> state.cartReducer)
 
   const switchConnexion = () => {
-    setConnexionModal(!inscriptionModal) 
-    && setInscriptionModal(false)
-    console.log(connexionModal.valueOf())
+    setConnexionModal(!connexionModal) 
+    setInscriptionModal(false)
   }
 
   const switchInscription = () => {
     setInscriptionModal(!inscriptionModal) 
-    && setConnexionModal(false)
+    setConnexionModal(false)
   }
 
   useEffect(()=> {
@@ -71,7 +69,7 @@ export const Header = () => {
             </span>
 
             {connexionModal ? (
-              <ReactModal ariaHideApp={false} className={` ${!connexionModal ? "hidden" : "max-w-[100%] p-2"}`} 
+              <ReactModal ariaHideApp={false} className="max-w-[100%] p-2"
               shouldCloseOnOverlayClick={true}
               shouldCloseOnEsc={true} isOpen={connexionModal ? true : false}>
                 <span className='bg-slate-50 p-4 rounded-md cursor-pointer' onClick={switchConnexion}>
@@ -81,7 +79,7 @@ export const Header = () => {
             ) : ""}
 
             {inscriptionModal ? (
-              <ReactModal ariaHideApp={false} className={` ${!inscriptionModal ? "hidden" : "max-w-[100%] p-2"}`}
+              <ReactModal ariaHideApp={false} className= "max-w-[100%] p-2"
               shouldCloseOnOverlayClick={true}
               shouldCloseOnEsc={true} isOpen={inscriptionModal ? true : false}>
                 <span className='bg-slate-50 p-4 rounded-md cursor-pointer' onClick={switchConnexion}>
@@ -89,9 +87,7 @@ export const Header = () => {
                 <Inscription/>
               </ReactModal>
             ) : ""}
-          </>
-
-          
+          </>      
         )}
       </nav>
 
