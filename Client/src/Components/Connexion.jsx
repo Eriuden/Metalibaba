@@ -36,7 +36,7 @@ export const Connexion = () => {
   return (
     <div>
 
-      <form action='' onSubmit={handleLogin} className="bg-slate-200 border-l-4
+      <form action='' onSubmit={handleLogin} className="bg-slate-100 border-l-4
        rounded-md border-2 border-black mx-6 my-4 sm:mx-40 md:text-base 
        lg:mx-96 text-base flex flex-col items-center p-2">
 

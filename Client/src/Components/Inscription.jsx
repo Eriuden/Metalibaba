@@ -67,46 +67,46 @@ export const Inscription = () => {
             </h4>
           </>
         ) : (
-          <form action='' onSubmit={handleRegister} className="bg-slate-50 flex
+          <form action='' onSubmit={handleRegister} className="bg-slate-100 flex
            flex-col border-2 border-l-4 rounded-md border-black mx-12
             my-4 md:mx-[20%] lg:mx-[20%]">
 
-              <label htmlFor='name' className='my-2'>Votre nom</label>
+              <label htmlFor='name' className='mt-2 text-center'>Votre nom</label>
               <input className='border-2 border-black mx-12 sm:mx-52 md:mx-[30%]
               lg:mx-[30%]' type="text" name='name' value={name} 
               onChange={(e)=> setName(e.target.value)}/>
               <div className='name error'></div>
 
-              <label htmlFor='email' className='my-2'>Votre adresse mail</label>
+              <label htmlFor='email' className='mt-2 text-center'>Votre adresse mail</label>
               <input className='border-2 border-black mx-12 sm:mx-52 md:mx-[30%]
               lg:mx-[30%]' type="text" name='email' value={email} 
               onChange={(e)=> setEmail(e.target.value)}/>
               <div className='email error'></div>
 
-              <label htmlFor='address' className='my-2'>Votre adresse</label>
+              <label htmlFor='address' className='mt-2 text-center'>Votre adresse</label>
               <input className='border-2 border-black mx-12 sm:mx-52 md:mx-[30%]
               lg:mx-[30%]' type="text" name='address' value={address} 
               onChange={(e)=> setAddress(e.target.value)}/>
               <div className='address error'></div>
 
-              <label htmlFor='password' className='my-2'>Votre mot de passe</label>
+              <label htmlFor='password' className='mt-2 text-center'>Votre mot de passe</label>
               <input className='border-2 border-black mx-12 sm:mx-52 md:mx-[30%]
               lg:mx-[30%]' type='password' name='password' value={password} 
               onChange={(e)=> setPassword(e.target.value)}/>
               <div className='password error'></div>
 
-              <label htmlFor='name' className='my-2'>Confirmer votre mot de passe</label>
+              <label htmlFor='name' className='mt-2 text-center'>Confirmer votre mot de passe</label>
               <input className='border-2 border-black mx-12 sm:mx-52 md:mx-[30%]
               lg:mx-[30%]' type='password' name='password-conf' value={passwordControl} 
               onChange={(e)=> setPasswordControl(e.target.value)}/>
 
-              <label className='mx-8 my-2 md:mx-12' htmlFor='terms'>
+              <label className='mx-8 mt-2 md:mx-12 text-center' htmlFor='terms'>
                 J'accepte les <a className='underline' href='/'>Conditions générales</a>
               </label>
               <input type="checkbox" id='terms' />
               <div className='terms error'></div>
 
-              <input type="submit" className='border-2 border-black my-2 mx-[25%] 
+              <input type="submit" className=' rounded-sm bg-slate-200 border-2 border-black my-4 mx-[25%] 
               xs:mx-[40%] sm:mx-[42%] md:mx-[40%] lg:mx-[43%] xl:mx-[43%]
               2xl:mx-[43%]' value="inscription" />
 

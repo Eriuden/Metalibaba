@@ -23,6 +23,7 @@ export const Header = () => {
   const switchConnexion = () => {
     setConnexionModal(!inscriptionModal) 
     && setInscriptionModal(false)
+    console.log(connexionModal.valueOf())
   }
 
   const switchInscription = () => {
@@ -72,7 +73,7 @@ export const Header = () => {
             {connexionModal ? (
               <ReactModal ariaHideApp={false} className={` ${!connexionModal ? "hidden" : "max-w-[100%] p-2"}`} 
               shouldCloseOnOverlayClick={true}
-              shouldCloseOnEsc={true} isOpen={true}>
+              shouldCloseOnEsc={true} isOpen={connexionModal ? true : false}>
                 <span className='bg-slate-50 p-4 rounded-md cursor-pointer' onClick={switchConnexion}>
                 X</span>
                 <Connexion/>
@@ -82,7 +83,11 @@ export const Header = () => {
             {inscriptionModal ? (
               <ReactModal ariaHideApp={false} className={` ${!inscriptionModal ? "hidden" : "max-w-[100%] p-2"}`}
               shouldCloseOnOverlayClick={true}
-              shouldCloseOnEsc={true} isOpen={true}><Inscription/></ReactModal>
+              shouldCloseOnEsc={true} isOpen={inscriptionModal ? true : false}>
+                <span className='bg-slate-50 p-4 rounded-md cursor-pointer' onClick={switchConnexion}>
+                X</span>
+                <Inscription/>
+              </ReactModal>
             ) : ""}
           </>
 
