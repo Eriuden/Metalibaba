@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllArticles } from '../Redux/Actions/Article.action'
 import { ArticleCard } from './ArticleCard'
+import { isEmpty } from '../Utils'
 
 export const Searcher = () => {
 
@@ -32,7 +33,7 @@ export const Searcher = () => {
       </form>
 
       <div>
-        {search ? (
+        { !isEmpty(articles[0]) && search !="" ? (
           articles.map((article) => {
             if (article.name.includes(search)){
               <ArticleCard articleProps={article} key={article._id}/>

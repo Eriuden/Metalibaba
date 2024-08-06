@@ -103,7 +103,7 @@ export const Inscription = () => {
               <label className='mx-8 mt-2 md:mx-12 text-center' htmlFor='terms'>
                 J'accepte les <a className='underline' href='/'>Conditions générales</a>
               </label>
-              <input type="checkbox" id='terms' />
+              <input type="checkbox" name='terms' id='terms' />
               <div className='terms error'></div>
 
               <input type="submit" className=' rounded-sm bg-slate-200 border-2 border-black my-4 mx-[25%] 
