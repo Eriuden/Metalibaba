@@ -72,7 +72,8 @@ export const Header = () => {
               <ReactModal ariaHideApp={false} className="max-w-[100%] p-2"
               shouldCloseOnOverlayClick={true}
               shouldCloseOnEsc={true} isOpen={connexionModal ? true : false}>
-                <span className='bg-slate-50 p-4 rounded-md cursor-pointer' onClick={switchConnexion}>
+                <span className='bg-slate-50 py-2 px-4 mx-[83%] md:mx-[74%] lg:mx-[57%] xl:mx-[65%] 2xl:mx-[75%]
+                mt-[20%] rounded-md cursor-pointer' onClick={switchConnexion}>
                 X</span>
                 <Connexion/>
               </ReactModal>
@@ -82,7 +83,7 @@ export const Header = () => {
               <ReactModal ariaHideApp={false} className= "max-w-[100%] p-2"
               shouldCloseOnOverlayClick={true}
               shouldCloseOnEsc={true} isOpen={inscriptionModal ? true : false}>
-                <span className='bg-slate-50 p-4 rounded-md cursor-pointer' onClick={switchInscription}>
+                <span className='bg-slate-50 py-2 px-4 mx-[75%] mt-[20%] rounded-md cursor-pointer' onClick={switchInscription}>
                 X</span>
                 <Inscription/>
               </ReactModal>

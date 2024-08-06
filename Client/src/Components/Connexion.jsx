@@ -36,13 +36,12 @@ export const Connexion = () => {
   return (
     <div>
 
-      <form action='' onSubmit={handleLogin} className="bg-slate-100 border-l-4
+      <form action='' onSubmit={handleLogin} className="bg-slate-100 border-l-4 border-b-4
        rounded-md border-2 border-black mx-6 my-4 sm:mx-40 md:text-base 
        lg:mx-96 text-base flex flex-col items-center p-2">
 
         <label htmlFor='email'>Email</label>
         
-
         <input className="border-2 border-black"
         type="text" name="email" id="email" 
         onChange={(e)=> setEmail(e.target.value)} value={email}/>

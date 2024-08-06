@@ -68,7 +68,7 @@ export const Inscription = () => {
           </>
         ) : (
           <form action='' onSubmit={handleRegister} className="bg-slate-100 flex
-           flex-col border-2 border-l-4 rounded-md border-black mx-12
+           flex-col border-2 border-l-4 border-b-4 rounded-md border-black mx-12
             my-4 md:mx-[20%] lg:mx-[20%]">
 
               <label htmlFor='name' className='mt-2 text-center'>Votre nom</label>
