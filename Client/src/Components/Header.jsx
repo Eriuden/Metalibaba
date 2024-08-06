@@ -38,17 +38,17 @@ export const Header = () => {
   },[uid, userData, cartData])
 
   return (
-    <div>
-      <h1>
+    <div className='bg-gray-900 bg-cover'>
+      <h1 className='text-gray-400 text-center'>
         Metalibaba 
       </h1>
 
-      <nav className='hidden sticky flex-row justify-around mt-0 sm:flex'>
-        <Link to={"/"}>Acceuil</Link>
+      <nav className='hidden sticky flex-row justify-around mt-2 sm:flex'>
+        <Link to={"/"} className ="text-gray-400">Acceuil</Link>
 
         {uid ? (
           <>
-            <Link to={"/user-profile/:id"}>
+            <Link className ="text-gray-400" to={"/user-profile/:id"}>
               <h5>{uidMessage}</h5>
             </Link>
 
@@ -56,25 +56,33 @@ export const Header = () => {
 
             <div>
                 <span className='spanCart'>{cartNumber}</span>
-                <Link to={"/cart"}/>
+                <Link className ="text-gray-400" to={"/cart"}/>
             </div>
           </>
         ) :(
           <>
-            <span onClick={switchConnexion}>
+            <span className ="text-gray-400" onClick={switchConnexion}>
               Connexion
             </span>
 
-            <span onClick={switchInscription}>
+            <span className ="text-gray-400" onClick={switchInscription}>
               Inscription
             </span>
 
             {connexionModal ? (
-              <ReactModal isOpen={true}><Connexion/></ReactModal>
+              <ReactModal ariaHideApp={false} className={` ${!connexionModal ? "hidden" : "max-w-[100%] p-2"}`} 
+              shouldCloseOnOverlayClick={true}
+              shouldCloseOnEsc={true} isOpen={true}>
+                <span className='bg-slate-50 p-4 rounded-md cursor-pointer' onClick={switchConnexion}>
+                X</span>
+                <Connexion/>
+              </ReactModal>
             ) : ""}
 
             {inscriptionModal ? (
-              <ReactModal isOpen={true}><Inscription/></ReactModal>
+              <ReactModal ariaHideApp={false} className={` ${!inscriptionModal ? "hidden" : "max-w-[100%] p-2"}`}
+              shouldCloseOnOverlayClick={true}
+              shouldCloseOnEsc={true} isOpen={true}><Inscription/></ReactModal>
             ) : ""}
           </>
 

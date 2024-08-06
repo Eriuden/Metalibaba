@@ -25,9 +25,9 @@ export const Searcher = () => {
   }
 
   return (
-    <div>
-      <form action='' className='my-4'>
-        <input type="text" placeholder="Entrez un nom d'article, son type ou son groupe"
+    <div className='mt-8 flex justify-center'>
+      <form action='' className='border rounded-md my-4 max-w-[100%]'>
+        <input type="text" placeholder="Nom d'article, type ou groupe"
         onChange={handleSearchChange} value={search}/>
       </form>
 

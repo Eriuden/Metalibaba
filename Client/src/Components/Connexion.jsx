@@ -36,12 +36,12 @@ export const Connexion = () => {
   return (
     <div>
 
-      <form action='' onSubmit={handleLogin} className="bg-slate-50 border-l-4
+      <form action='' onSubmit={handleLogin} className="bg-slate-200 border-l-4
        rounded-md border-2 border-black mx-6 my-4 sm:mx-40 md:text-base 
-       lg:mx-96 text-base">
+       lg:mx-96 text-base flex flex-col items-center p-2">
 
         <label htmlFor='email'>Email</label>
-        <br/>
+        
 
         <input className="border-2 border-black"
         type="text" name="email" id="email" 
@@ -51,7 +51,7 @@ export const Connexion = () => {
         <br/>
 
         <label htmlFor='password'>Mot de passe</label>
-        <br/>
+        
 
         <input className='border-2 border-black' type="password" name='password'
         id='password' onChange={(e)=> setPassword(e.target.value)} value={password}
@@ -62,7 +62,7 @@ export const Connexion = () => {
         <input className='border-2 border-black my-2 px-2' type="submit"
         value="connexion" />
 
-        <Link to={"reset-password"} className="border-2 border-black">
+        <Link to={"reset-password"} className="my-4 px-2">
           Mot de passe Oublié ?
         </Link>
 
