@@ -38,30 +38,31 @@ export const Connexion = () => {
 
       <form action='' onSubmit={handleLogin} className="bg-slate-100 border-l-4 border-b-4
        rounded-md border-2 border-black mx-6 my-4 sm:mx-40 md:text-base 
+       bg-gradient-to-r  from-slate-300 via-slate-400 to-slate-300
        lg:mx-96 text-base flex flex-col items-center p-2">
 
-        <label htmlFor='email'>Email</label>
+        <label className='text-black font-serif' htmlFor='email'>Email</label>
         
         <input className="border-2 border-black"
         type="text" name="email" id="email" 
         onChange={(e)=> setEmail(e.target.value)} value={email}/>
 
-        <div className='email error'></div>
+        <div className='email error text-black font-serif'></div>
         <br/>
 
-        <label htmlFor='password'>Mot de passe</label>
+        <label className='text-black font-serif' htmlFor='password'>Mot de passe</label>
         
 
         <input className='border-2 border-black' type="password" name='password'
         id='password' onChange={(e)=> setPassword(e.target.value)} value={password}
         />
-        <div className='password error'></div>
+        <div className='password error text-black font-serif'></div>
         <br/>
 
-        <input className='border-2 border-black my-2 px-2' type="submit"
+        <input className='border-2 border-black my-2 px-2 text-black font-serif' type="submit"
         value="connexion" />
 
-        <Link to={"reset-password"} className="my-4 px-2">
+        <Link to={"reset-password"} className="my-4 px-2 text-black font-serif">
           Mot de passe Oublié ?
         </Link>
 

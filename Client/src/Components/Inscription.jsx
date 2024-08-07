@@ -69,46 +69,48 @@ export const Inscription = () => {
         ) : (
           <form action='' onSubmit={handleRegister} className="bg-slate-100 flex
            flex-col border-2 border-l-4 border-b-4 rounded-md border-black mx-12
-            my-4 md:mx-[20%] lg:mx-[20%]">
+           bg-gradient-to-r from-slate-300 via-slate-400 to-slate-300
+           my-4 md:mx-[20%] lg:mx-[20%]">
 
-              <label htmlFor='name' className='mt-2 text-center'>Votre nom</label>
+              <label htmlFor='name' className='mt-2 text-center text-black font-serif'>Votre nom</label>
               <input className='border-2 border-black mx-12 sm:mx-52 md:mx-[30%]
               lg:mx-[30%]' type="text" name='name' value={name} 
               onChange={(e)=> setName(e.target.value)}/>
               <div className='name error'></div>
 
-              <label htmlFor='email' className='mt-2 text-center'>Votre adresse mail</label>
+              <label htmlFor='email' className='mt-2 text-center text-black font-serif'>Votre adresse mail</label>
               <input className='border-2 border-black mx-12 sm:mx-52 md:mx-[30%]
               lg:mx-[30%]' type="text" name='email' value={email} 
               onChange={(e)=> setEmail(e.target.value)}/>
               <div className='email error'></div>
 
-              <label htmlFor='address' className='mt-2 text-center'>Votre adresse</label>
+              <label htmlFor='address' className='mt-2 text-center text-black font-serif'>Votre adresse</label>
               <input className='border-2 border-black mx-12 sm:mx-52 md:mx-[30%]
               lg:mx-[30%]' type="text" name='address' value={address} 
               onChange={(e)=> setAddress(e.target.value)}/>
               <div className='address error'></div>
 
-              <label htmlFor='password' className='mt-2 text-center'>Votre mot de passe</label>
+              <label htmlFor='password' className='mt-2 text-center text-black font-serif'>Votre mot de passe</label>
               <input className='border-2 border-black mx-12 sm:mx-52 md:mx-[30%]
               lg:mx-[30%]' type='password' name='password' value={password} 
               onChange={(e)=> setPassword(e.target.value)}/>
               <div className='password error'></div>
 
-              <label htmlFor='name' className='mt-2 text-center'>Confirmer votre mot de passe</label>
+              <label htmlFor='name' className='mt-2 text-center text-black font-serif'>Confirmer votre mot de passe</label>
               <input className='border-2 border-black mx-12 sm:mx-52 md:mx-[30%]
               lg:mx-[30%]' type='password' name='password-conf' value={passwordControl} 
               onChange={(e)=> setPasswordControl(e.target.value)}/>
 
-              <label className='mx-8 mt-2 md:mx-12 text-center' htmlFor='terms'>
-                J'accepte les <a className='underline' href='/'>Conditions générales</a>
+              <label className='mx-8 mt-2 md:mx-12 text-center text-black font-serif' htmlFor='terms'>
+                J'accepte les <a className='underline text-black font-serif' href='/'>Conditions générales</a>
               </label>
               <input type="checkbox" name='terms' id='terms' />
               <div className='terms error'></div>
 
               <input type="submit" className=' rounded-sm bg-slate-200 border-2 border-black my-4 mx-[25%] 
               xs:mx-[40%] sm:mx-[42%] md:mx-[40%] lg:mx-[43%] xl:mx-[43%]
-              2xl:mx-[43%]' value="inscription" />
+              2xl:mx-[43%] text-black font-serif' 
+              value="inscription"/>
 
           </form>
         )}

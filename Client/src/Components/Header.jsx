@@ -123,8 +123,8 @@ export const Header = () => {
             </>
           ) : (
             <>
-              <Link className='w-[100%] text-center m-auto text-black' to={"/login"}>Connexion</Link>
-              <Link className='w-[100%] text-center m-auto text-black' to={"/register"}>Inscription</Link>
+              <span className='w-[100%] text-center m-auto text-black' onClick={switchConnexion} >Connexion</span>
+              <span className='w-[100%] text-center m-auto text-black' onClick={switchInscription}>Inscription</span>
             </>
           )}
         </nav>
