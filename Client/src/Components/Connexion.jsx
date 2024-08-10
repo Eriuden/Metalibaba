@@ -59,10 +59,10 @@ export const Connexion = () => {
         <div className='password error text-black font-serif'></div>
         <br/>
 
-        <input className='border-2 border-black my-2 px-2 text-black font-serif' type="submit"
+        <input className='border-2 border-black my-2 px-2 text-black font-serif bg-slate-200 rounded-sm' type="submit"
         value="connexion" />
 
-        <Link to={"reset-password"} className="my-4 px-2 text-black font-serif">
+        <Link to={"reset-password"} className="my-4 px-2 text-black font-serif underline">
           Mot de passe Oublié ?
         </Link>
 

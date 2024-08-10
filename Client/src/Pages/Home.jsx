@@ -33,7 +33,7 @@ export const Home = () => {
     <div>
       <div>
         <ul>
-          {articles[0] &&
+          {!isEmpty(articles[0]) &&
             articles.map((article) => {
               return <ArticleCard articleProps={article} key={article._id}/>
           })}

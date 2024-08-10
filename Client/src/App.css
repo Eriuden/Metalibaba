@@ -1,5 +1,6 @@
 #root {
-  width: 100%; 
+  width: 100%;
+  background: linear-gradient(to right, #E4E6EB, #E4E6EB, #CBD2D9);
 }
 
 .logo {
