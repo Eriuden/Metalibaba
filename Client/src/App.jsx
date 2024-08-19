@@ -44,8 +44,6 @@ function App() {
         <Searcher/>
         <Routes>
           <Route exact path={"/"} element={<Home/>}/>
-          <Route exact path={"/connexion"} element={<Connexion/>}/>
-          <Route exact path={"/inscription"} element={<Inscription/>}/>
           <Route exact path={"/user-profile/:id"} element={<UserProfile/>}/>
           <Route exact path={"/reset-password"} element={<ResetPasswordLink/>}/>
           <Route exact path={"/update-password"} element={<UpdatePassword/>}/>

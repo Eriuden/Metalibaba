@@ -10,7 +10,7 @@ export const UpdatePassword = () => {
 
   const validUser = useNavigate()
 
-  const [data, setData] = useState(false)
+  const [weHaveTheData, setWeHaveTheData] = useState(false)
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState("")
 
@@ -73,14 +73,14 @@ export const UpdatePassword = () => {
   useEffect(()=> {
     userValid()
     setTimeout(()=> {
-      setData(true)
+      setWeHaveTheData(true)
     }, 3000)
   }, [])
 
 
   return (
     <div>
-      {data ? (
+      {weHaveTheData ? (
         <div>
           <div>
             <h2>

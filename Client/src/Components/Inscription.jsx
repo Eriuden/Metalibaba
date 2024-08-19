@@ -13,7 +13,9 @@ export const Inscription = () => {
 
   const handleRegister = async(e)=> {
     e.preventDefault()
+
     const terms = document.getElementById("terms")
+    
     const nameError = document.querySelector(".name.error")
     const emailError = document.querySelector(".email.error")
     const addressError = document.querySelector(".address.error")

@@ -14,6 +14,7 @@ export const Header = () => {
   const [inscriptionModal, setInscriptionModal] = useState(false)
   const [uidMessage, setUidMessage] = useState("")
   const [cartNumber, setCartNumber] = useState(0)
+  
   const uid = useContext(UidContext)
 
   const userData = useSelector((state)=> state.userReducer)
