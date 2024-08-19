@@ -123,8 +123,10 @@ export const Header = () => {
             </>
           ) : (
             <>
-              <span className='w-[100%] text-center m-auto text-black' onClick={switchConnexion} >Connexion</span>
-              <span className='w-[100%] text-center m-auto text-black' onClick={switchInscription}>Inscription</span>
+              <span className='w-[100%] text-center m-auto text-black' 
+                onClick={switchConnexion} >Connexion</span>
+              <span className='w-[100%] text-center m-auto text-black' 
+                onClick={switchInscription}>Inscription</span>
             </>
           )}
         </nav>
