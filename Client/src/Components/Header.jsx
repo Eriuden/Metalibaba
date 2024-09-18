@@ -61,11 +61,11 @@ export const Header = () => {
           </>
         ) :(
           <>
-            <span className ="text-gray-100 font-serif text-xl" onClick={switchConnexion}>
+            <span className ="text-gray-100 font-serif text-xl cursor-pointer" onClick={switchConnexion}>
               Connexion
             </span>
 
-            <span className ="text-gray-100 font-serif text-xl " onClick={switchInscription}>
+            <span className ="text-gray-100 font-serif text-xl cursor-pointer " onClick={switchInscription}>
               Inscription
             </span>
 
