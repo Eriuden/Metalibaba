@@ -14,7 +14,7 @@ module.exports.signUpErrors = (err) => {
         errors.name = "Ce nom est déjà pris"
 
     if (err.code === 11000 & Object.keys(err.keyValue)[0].includes("email"))
-        errors.name = "Cette adresse mail est déjà pris"
+        errors.email = "Cette adresse mail est déjà prise"
     
     return errors
 }
