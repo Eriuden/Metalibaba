@@ -4,8 +4,6 @@ import {Header} from "./Components/Header"
 import { Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Home } from './Pages/Home'
-import { Connexion } from './Components/Connexion'
-import { Inscription } from './Components/Inscription'
 import { Searcher } from './Components/Searcher'
 import { getUser } from './Redux/Actions/User.action'
 import { UserProfile } from './Pages/UserProfile'
